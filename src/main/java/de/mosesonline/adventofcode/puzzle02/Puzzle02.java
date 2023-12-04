@@ -23,7 +23,7 @@ public class Puzzle02 {
     public static void runPart2() {
         try {
             int result = new Puzzle02().playPartTwo("20231202_realdata.txt");
-            System.out.println("20231202_1: " + result);
+            System.out.println("20231202_2: " + result);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
