@@ -40,14 +40,7 @@ public final class Almanac {
         while (seeds1.hasNext()) {
             threadList.add(Thread.startVirtualThread(() -> currentValues.add(mappingTable.map(seeds1.next()).valueFor("location"))));
             if (threadList.size() == concurrent) {
-                threadList.forEach((t) -> {
-                    try {
-                        t.join();
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
-                threadList.clear();
+                waitForThreads(threadList);
                 min = Math.min(min, currentValues.stream().mapToLong(Long::longValue).min().orElseThrow());
                 currentValues.clear();
                 round++;
@@ -55,6 +48,14 @@ public final class Almanac {
             }
         }
 
+        waitForThreads(threadList);
+        if (!currentValues.isEmpty()) {
+            min = Math.min(min, currentValues.stream().mapToLong(Long::longValue).min().orElseThrow());
+        }
+        return min;
+    }
+
+    private static void waitForThreads(List<Thread> threadList) {
         threadList.forEach((t) -> {
             try {
                 t.join();
@@ -63,10 +64,6 @@ public final class Almanac {
             }
         });
         threadList.clear();
-        if (!currentValues.isEmpty()) {
-            min = Math.min(min, currentValues.stream().mapToLong(Long::longValue).min().orElseThrow());
-        }
-        return min;
     }
 
     public record CombinedMappingTable(MappingTable fromTable, MappingTable toTable) implements MappingTable {

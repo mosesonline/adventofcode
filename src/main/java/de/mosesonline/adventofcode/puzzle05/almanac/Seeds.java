@@ -1,6 +1,10 @@
 package de.mosesonline.adventofcode.puzzle05.almanac;
 
 import java.util.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 record Seeds(List<Seed> seedNumbers) {
 
@@ -14,6 +18,7 @@ record Seeds(List<Seed> seedNumbers) {
         private int currentSeedIndex = 0;
         private long innerSeedNumber;
         private long innerSeedRange;
+        private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
         private MyIterator() {
             setInnerSeedData();
@@ -21,19 +26,31 @@ record Seeds(List<Seed> seedNumbers) {
 
         @Override
         public boolean hasNext() {
-            return currentSeedIndex < seedNumbers.size();
+            Lock lock = this.lock.readLock();
+            lock.lock();
+            try {
+                return currentSeedIndex < seedNumbers.size();
+            } finally {
+                lock.unlock();
+            }
         }
 
         @Override
         public Seed next() {
-            final var seed = new Seed(innerSeedNumber);
-            if (innerSeedNumber < innerSeedRange) {
-                innerSeedNumber++;
-            } else {
-                currentSeedIndex += 2;
-                setInnerSeedData();
+            Lock writeLock = lock.writeLock();
+            writeLock.lock();
+            try {
+                final var seed = new Seed(innerSeedNumber);
+                if (innerSeedNumber < innerSeedRange) {
+                    innerSeedNumber++;
+                } else {
+                    currentSeedIndex += 2;
+                    setInnerSeedData();
+                }
+                return seed;
+            } finally {
+                writeLock.unlock();
             }
-            return seed;
         }
 
 
