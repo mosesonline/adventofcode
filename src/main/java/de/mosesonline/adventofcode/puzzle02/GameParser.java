@@ -1,7 +1,5 @@
 package de.mosesonline.adventofcode.puzzle02;
 
-import de.mosesonline.adventofcode.common.FileLoader;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,13 +7,14 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static de.mosesonline.adventofcode.common.FileLoader.getInstance;
 import static java.lang.Integer.parseInt;
 
 public class GameParser {
 
     public List<Game> parseGameFile(String path) throws URISyntaxException, IOException {
         List<Game> games = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(new FileLoader().loadFromResource(path)))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(getInstance().loadFromResource(path)))) {
             String currentLine = br.readLine();
             while (currentLine != null && !currentLine.isEmpty()) {
                 games.add(parseGame(currentLine));

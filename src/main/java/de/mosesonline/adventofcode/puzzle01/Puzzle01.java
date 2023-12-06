@@ -1,16 +1,14 @@
 package de.mosesonline.adventofcode.puzzle01;
 
-import de.mosesonline.adventofcode.common.FileLoader;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static de.mosesonline.adventofcode.common.FileLoader.getInstance;
 import static java.lang.Character.isDigit;
 
 public class Puzzle01 {
 
-    private static final FileLoader FILE_LOADER = new FileLoader();
     private final Part part;
 
     Puzzle01(Part part) {
@@ -20,7 +18,7 @@ public class Puzzle01 {
     public static void runPart1() {
         try {
             Puzzle01 puzzle = new Puzzle01(Part.ONE);
-            int result = puzzle.sum(FILE_LOADER.loadFromResource("20231201_realdata.txt"));
+            int result = puzzle.sum(getInstance().loadFromResource("20231201_realdata.txt"));
             System.out.println("20231201_1: " + result);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -30,7 +28,7 @@ public class Puzzle01 {
     public static void runPart2() {
         try {
             Puzzle01 puzzle = new Puzzle01(Part.TWO);
-            int result = puzzle.sum(FILE_LOADER.loadFromResource("20231201_realdata.txt"));
+            int result = puzzle.sum(getInstance().loadFromResource("20231201_realdata.txt"));
             System.out.println("20231201_2: " + result);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -39,7 +37,7 @@ public class Puzzle01 {
 
     public int sum(File input) throws IOException {
         final AtomicInteger sum = new AtomicInteger();
-        FILE_LOADER.parseLineByLine(input, currentLine -> sum.addAndGet(findFirst(currentLine) * 10 + findLast(currentLine)));
+        getInstance().parseLineByLine(input, currentLine -> sum.addAndGet(findFirst(currentLine) * 10 + findLast(currentLine)));
         return sum.get();
     }
 

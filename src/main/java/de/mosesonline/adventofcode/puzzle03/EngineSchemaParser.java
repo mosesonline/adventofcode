@@ -1,16 +1,15 @@
 package de.mosesonline.adventofcode.puzzle03;
 
-import de.mosesonline.adventofcode.common.FileLoader;
-
 import java.io.File;
 import java.io.IOException;
 
-class EngineSchemaParser {
-    private static final FileLoader fileLoader = new FileLoader();
+import static de.mosesonline.adventofcode.common.FileLoader.getInstance;
 
-     Engine parse(File file) throws IOException {
+class EngineSchemaParser {
+
+    Engine parse(File file) throws IOException {
         final var engineBuilder = Engine.builder();
-        fileLoader.parseLineByLine(file, engineBuilder::addLine);
+        getInstance().parseLineByLine(file, engineBuilder::addLine);
         return engineBuilder.build();
     }
 }
