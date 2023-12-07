@@ -33,7 +33,6 @@ public class Puzzle05 {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
-
     }
 
     Long lowestLocationNumberInRange(File input) throws IOException {

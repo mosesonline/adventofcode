@@ -5,6 +5,7 @@ import de.mosesonline.adventofcode.puzzle02.Puzzle02;
 import de.mosesonline.adventofcode.puzzle03.Puzzle03;
 import de.mosesonline.adventofcode.puzzle04.Puzzle04;
 import de.mosesonline.adventofcode.puzzle05.Puzzle05;
+import de.mosesonline.adventofcode.puzzle06.Puzzle06;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ public class AdventOfCodeApp {
             threadList.add(Thread.startVirtualThread(Puzzle04::runPart2));
             threadList.add(Thread.startVirtualThread(Puzzle05::runPart1));
             threadList.add(Thread.startVirtualThread(Puzzle05::runPart2));
+            threadList.add(Thread.startVirtualThread(Puzzle06::runPart1));
+            threadList.add(Thread.startVirtualThread(Puzzle06::runPart2));
             threadList.forEach(t -> {
                 try {
                     t.join();
