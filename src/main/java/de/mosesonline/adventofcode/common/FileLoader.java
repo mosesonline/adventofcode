@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -27,8 +29,14 @@ public class FileLoader {
     }
 
     public File loadFromResource(String fileName) throws URISyntaxException {
-        URL resource = getClass().getClassLoader().getResource(fileName);
-        return new File(resource.toURI());
+        String folder = System.getenv("ADVENT_DATA_FOLDER");
+        URI resource;
+        if(folder != null){
+            resource = Paths.get(folder, fileName).toUri();
+        } else {
+            resource = getClass().getClassLoader().getResource(fileName).toURI();
+        }
+        return new File(resource);
     }
 
     public void parseLineByLine(File file, Consumer<String> consumer) throws IOException {

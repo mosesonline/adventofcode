@@ -7,6 +7,8 @@ import de.mosesonline.adventofcode.puzzle04.Puzzle04;
 import de.mosesonline.adventofcode.puzzle05.Puzzle05;
 import de.mosesonline.adventofcode.puzzle06.Puzzle06;
 import de.mosesonline.adventofcode.puzzle07.Puzzle07;
+import de.mosesonline.adventofcode.puzzle08.Puzzle08;
+import de.mosesonline.adventofcode.puzzle09.Puzzle09;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,28 +17,23 @@ public class AdventOfCodeApp {
 
     public static void main(String[] args) {
         try {
-            List<Thread> threadList = new ArrayList<>();
-            /*threadList.add(Thread.startVirtualThread(Puzzle01::runPart1));
-            threadList.add(Thread.startVirtualThread(Puzzle01::runPart2));
-            threadList.add(Thread.startVirtualThread(Puzzle02::runPart1));
-            threadList.add(Thread.startVirtualThread(Puzzle02::runPart2));
-            threadList.add(Thread.startVirtualThread(Puzzle03::runPart1));
-            threadList.add(Thread.startVirtualThread(Puzzle03::runPart2));
-            threadList.add(Thread.startVirtualThread(Puzzle04::runPart1));
-            threadList.add(Thread.startVirtualThread(Puzzle04::runPart2));
-            threadList.add(Thread.startVirtualThread(Puzzle05::runPart1));
-            threadList.add(Thread.startVirtualThread(Puzzle05::runPart2));
-            threadList.add(Thread.startVirtualThread(Puzzle06::runPart1));
-            threadList.add(Thread.startVirtualThread(Puzzle06::runPart2));*/
-            threadList.add(Thread.startVirtualThread(Puzzle07::runPart1));
-            threadList.add(Thread.startVirtualThread(Puzzle07::runPart2));
-            threadList.forEach(t -> {
-                try {
-                    t.join();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            });
+/*            Puzzle01.runPart1();
+            Puzzle01.runPart2();
+            Puzzle02.runPart1();
+            Puzzle02.runPart2();
+            Puzzle03.runPart1();
+            Puzzle03.runPart2();
+            Puzzle04.runPart1();
+            Puzzle04.runPart2();
+            Puzzle05.runPart1();
+            Puzzle05.runPart2();
+            Puzzle06.runPart1();
+            Puzzle06.runPart2();
+            Puzzle07.runPart1();
+            Puzzle07.runPart2();*/
+            Puzzle08.runPart1();
+            Puzzle08.runPart2();
+            Puzzle09.runPart1();
         } catch (Exception e) {
             e.printStackTrace();
         }

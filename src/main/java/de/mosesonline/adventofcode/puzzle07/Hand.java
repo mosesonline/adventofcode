@@ -37,7 +37,6 @@ public class Hand {
             return findHandType(distribution);
         }
 
-
         static HandType withJoker(Card[] cards) {
             final var distributions = Card.alternativeDistributions(cards);
             return distributions.stream()
@@ -80,7 +79,7 @@ public class Hand {
         public int compare(Hand o1, Hand o2) {
             int compare = HandType.fromHand(o1.cards).compareTo(HandType.fromHand(o2.cards));
             if (compare != 0) {
-                return compare;
+                return (int) Math.signum(compare);
             }
             for (int i = 0; i < 5 && compare == 0; i++) {
                 compare = o1.cards[i].ordinal() - o2.cards[i].ordinal();
@@ -95,7 +94,7 @@ public class Hand {
         public int compare(Hand o1, Hand o2) {
             int compare = HandType.withJoker(o1.cards).compareTo(HandType.withJoker(o2.cards));
             if (compare != 0) {
-                return compare;
+                return (int) Math.signum(compare);
             }
             for (int i = 0; i < 5 && compare == 0; i++) {
                 compare = o1.cards[i].alternativeOrder() - o2.cards[i].alternativeOrder();

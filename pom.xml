@@ -13,6 +13,8 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mainClass>de.mosesonline.adventofcode.AdventOfCodeApp</mainClass>
+        <native.maven.plugin.version>0.9.28</native.maven.plugin.version>
     </properties>
 
     <dependencies>
@@ -25,6 +27,7 @@
     </dependencies>
 
     <build>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -34,6 +37,22 @@
                     <configuration>
                         <rulesUri>file:///${maven.multiModuleProjectDirectory}/rules.xml</rulesUri>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <executions>
+                        <execution>
+                            <id>java</id>
+                            <goals>
+                                <goal>java</goal>
+                            </goals>
+                            <configuration>
+                                <mainClass>${mainClass}</mainClass>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -47,6 +66,14 @@
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>3.3.0</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                                <mainClass>${mainClass}</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
@@ -76,10 +103,19 @@
                 <plugin>
                     <artifactId>maven-assembly-plugin</artifactId>
                     <version>3.6.0</version>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                     <configuration>
                         <archive>
                             <manifest>
-                                <mainClass>de.mosesonline.adventofcode.AdventOfCodeApp</mainClass>
+                                <addClasspath>true</addClasspath>
+                                <mainClass>${mainClass}</mainClass>
                             </manifest>
                         </archive>
                         <descriptorRefs>
@@ -90,4 +126,34 @@
             </plugins>
         </pluginManagement>
     </build>
+    <profiles>
+        <profile>
+            <id>native</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.graalvm.buildtools</groupId>
+                        <artifactId>native-maven-plugin</artifactId>
+                        <version>${native.maven.plugin.version}</version>
+                        <extensions>true</extensions>
+                        <executions>
+                            <execution>
+                                <id>build-native</id>
+                                <goals>
+                                    <goal>compile-no-fork</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <buildArgs>
+                                <!-- 3. Quick build mode -->
+                                <buildArg>-Ob</buildArg>
+                            </buildArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

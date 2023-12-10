@@ -1,5 +1,6 @@
 package de.mosesonline.adventofcode.puzzle07;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -11,14 +12,32 @@ import static org.junit.jupiter.api.Assertions.*;
 class CardTest {
     @Test
     void should_calculateAlternatives() {
-        List<Card[]> alternatives = Card.alternatives(new Card[]{CARD_2, CARD_3, Card.CARD_4, Card.CARD_J, Card.CARD_J});
+        List<Card[]> alternatives = Card.alternatives(new Card[]{CARD_2, CARD_3, CARD_4, CARD_J, CARD_J});
         assertEquals(6, alternatives.size());
-        assertTrue(alternatives.stream().anyMatch(p -> Arrays.equals(p, new Card[]{CARD_2, CARD_3, Card.CARD_4, CARD_2, CARD_2})));
-        assertTrue(alternatives.stream().anyMatch(p -> Arrays.equals(p, new Card[]{CARD_2, CARD_3, Card.CARD_4, CARD_3, CARD_3})));
-        assertTrue(alternatives.stream().anyMatch(p -> Arrays.equals(p, new Card[]{CARD_2, CARD_3, Card.CARD_4, Card.CARD_4, Card.CARD_4})));
-        assertTrue(alternatives.stream().anyMatch(p -> Arrays.equals(p, new Card[]{CARD_2, CARD_3, Card.CARD_4, CARD_3, CARD_2})));
-        assertTrue(alternatives.stream().anyMatch(p -> Arrays.equals(p, new Card[]{CARD_2, CARD_3, Card.CARD_4, CARD_4, Card.CARD_2})));
-        assertTrue(alternatives.stream().anyMatch(p -> Arrays.equals(p, new Card[]{CARD_2, CARD_3, Card.CARD_4, CARD_4, Card.CARD_3})));
+        assertTrue(alternatives.stream().anyMatch(p -> {
+            Arrays.sort(p);
+            return Arrays.equals(p, new Card[]{CARD_2, CARD_2, CARD_2, CARD_3, CARD_4});
+        }));
+        assertTrue(alternatives.stream().anyMatch(p -> {
+            Arrays.sort(p);
+            return Arrays.equals(p, new Card[]{CARD_2, CARD_3, CARD_3, CARD_3, CARD_4});
+        }));
+        assertTrue(alternatives.stream().anyMatch(p -> {
+            Arrays.sort(p);
+            return Arrays.equals(p, new Card[]{CARD_2, CARD_3, CARD_4, CARD_4, CARD_4});
+        }));
+        assertTrue(alternatives.stream().anyMatch(p -> {
+            Arrays.sort(p);
+            return Arrays.equals(p, new Card[]{CARD_2, CARD_2, CARD_3, CARD_3, CARD_4});
+        }));
+        assertTrue(alternatives.stream().anyMatch(p -> {
+            Arrays.sort(p);
+            return Arrays.equals(p, new Card[]{CARD_2, CARD_2, CARD_3, CARD_4, CARD_4});
+        }));
+        assertTrue(alternatives.stream().anyMatch(p -> {
+            Arrays.sort(p);
+            return Arrays.equals(p, new Card[]{CARD_2, CARD_3, CARD_3, CARD_4, CARD_4});
+        }));
     }
 
     @Test

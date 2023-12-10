@@ -46,8 +46,8 @@ class HandTest {
         final var hand1 = new Hand(Card.CARD_J, Card.CARD_J, Card.CARD_J, Card.CARD_J, Card.CARD_J);
         final var hand2 = new Hand(Card.CARD_3, Card.CARD_3, Card.CARD_3, Card.CARD_3, Card.CARD_J);
         Hand.Part2Comparator defaultComparator = new Hand.Part2Comparator();
-        assertEquals(1, defaultComparator.compare(hand1, hand2));
-        assertEquals(-1, defaultComparator.compare(hand2, hand1));
+        assertEquals(-1, defaultComparator.compare(hand1, hand2));
+        assertEquals(1, defaultComparator.compare(hand2, hand1));
     }
 
     @Test
