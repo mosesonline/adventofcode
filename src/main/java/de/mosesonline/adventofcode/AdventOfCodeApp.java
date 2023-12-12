@@ -9,6 +9,7 @@ import de.mosesonline.adventofcode.puzzle06.Puzzle06;
 import de.mosesonline.adventofcode.puzzle07.Puzzle07;
 import de.mosesonline.adventofcode.puzzle08.Puzzle08;
 import de.mosesonline.adventofcode.puzzle09.Puzzle09;
+import de.mosesonline.adventofcode.puzzle10.Puzzle10;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +31,13 @@ public class AdventOfCodeApp {
             Puzzle06.runPart1();
             Puzzle06.runPart2();
             Puzzle07.runPart1();
-            Puzzle07.runPart2();*/
+            Puzzle07.runPart2();
             Puzzle08.runPart1();
             Puzzle08.runPart2();
             Puzzle09.runPart1();
+            Puzzle09.runPart2();*/
+            Puzzle10.runPart1();
+            Puzzle10.runPart2();
         } catch (Exception e) {
             e.printStackTrace();
         }

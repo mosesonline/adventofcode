@@ -22,7 +22,14 @@ public class Puzzle09 {
     }
 
     public static void runPart2() {
-
+        try {
+            final var puzzle = new Puzzle09();
+            int result = puzzle.sumPrevious(getInstance().loadFromResource("20231209_realdata.txt"));
+            System.out.println("20231209_2: " + result);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     int sum(File file) throws IOException {
