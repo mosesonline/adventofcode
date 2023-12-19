@@ -1,19 +1,6 @@
 package de.mosesonline.adventofcode;
 
-import de.mosesonline.adventofcode.puzzle01.Puzzle01;
-import de.mosesonline.adventofcode.puzzle02.Puzzle02;
-import de.mosesonline.adventofcode.puzzle03.Puzzle03;
-import de.mosesonline.adventofcode.puzzle04.Puzzle04;
-import de.mosesonline.adventofcode.puzzle05.Puzzle05;
-import de.mosesonline.adventofcode.puzzle06.Puzzle06;
-import de.mosesonline.adventofcode.puzzle07.Puzzle07;
-import de.mosesonline.adventofcode.puzzle08.Puzzle08;
-import de.mosesonline.adventofcode.puzzle09.Puzzle09;
-import de.mosesonline.adventofcode.puzzle10.Puzzle10;
-import de.mosesonline.adventofcode.puzzle11.Puzzle11;
-
-import java.util.ArrayList;
-import java.util.List;
+import de.mosesonline.adventofcode.puzzle12.Puzzle12;
 
 public class AdventOfCodeApp {
 
@@ -38,9 +25,11 @@ public class AdventOfCodeApp {
             Puzzle09.runPart1();
             Puzzle09.runPart2();
             Puzzle10.runPart1();
-            Puzzle10.runPart2();*/
+            Puzzle10.runPart2();
             Puzzle11.runPart1();
             Puzzle11.runPart2();
+            Puzzle12.runPart1();*/
+            Puzzle12.runPart2();
         } catch (Exception e) {
             e.printStackTrace();
         }
